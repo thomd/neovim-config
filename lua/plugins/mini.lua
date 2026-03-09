@@ -1,19 +1,5 @@
 -- https://github.com/nvim-mini/mini.nvim
 return {
-  -- Icons using modern material design
-  {
-
-    'nvim-mini/mini.icons',
-    version = false,
-    lazy = false,
-    priority = 900,
-    config = function()
-      require('mini.icons').setup()
-      _G.MiniIcons.mock_nvim_web_devicons()
-    end,
-  },
-
-  -- Align text interactively
   {
     'nvim-mini/mini.align',
     version = false,
@@ -23,8 +9,6 @@ return {
     },
     opts = {},
   },
-
-  -- Split and join arguments
   {
     'nvim-mini/mini.splitjoin',
     version = false,
@@ -41,48 +25,12 @@ return {
     },
     opts = {},
   },
-
-  -- Extended a/i textobjects
-  {
-    'nvim-mini/mini.ai',
-    version = false,
-    event = 'BufReadPost',
-    opts = {},
-  },
-
-  -- Surround actions (sa=add, sd=delete, sr=replace)
-  {
-    'nvim-mini/mini.surround',
-    version = false,
-    event = 'BufReadPost',
-    opts = {},
-  },
-
-  -- Auto-pairs
-  {
-    'nvim-mini/mini.pairs',
-    version = false,
-    event = 'InsertEnter',
-    opts = {},
-  },
-
-  -- Bracket navigation ([b/]b=buffer, [c/]c=comment, [d/]d=diagnostic, etc.)
-  {
-    'nvim-mini/mini.bracketed',
-    version = false,
-    event = 'BufReadPost',
-    opts = {},
-  },
-
-  -- Move selected text with meta+hjkl
   {
     'nvim-mini/mini.move',
     version = false,
     event = 'BufReadPost',
     opts = {},
   },
-
-  -- Statusline
   {
     'nvim-mini/mini.statusline',
     version = false,
