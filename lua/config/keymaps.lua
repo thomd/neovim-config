@@ -71,13 +71,13 @@ map('n', '<leader>s', '<cmd>set spell!<cr>', { desc = 'toggle spell' })
 -- Toggle options
 local toggles = {
   { 'w', 'wrap', 'wrap' },
-  { 'n', 'relativenumber', 'relative numbers' },
   { 'c', 'cursorline', 'cursorline' },
   { 'h', 'list', 'hidden chars' },
 }
+map('n', '<leader>m', function() vim.wo.relativenumber = not vim.wo.relativenumber end, { desc = 'relative numbers' })
 for _, t in ipairs(toggles) do
   map('n', '<leader>t' .. t[1], function()
-    vim.o[t[2]] = not vim.o[t[2]]
+    vim.wo[t[2]] = not vim.wo[t[2]]
   end, { desc = t[3] })
 end
 map('n', '<leader>tl', function()
