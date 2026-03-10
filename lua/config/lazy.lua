@@ -21,7 +21,6 @@ require('lazy').setup({
   defaults = {
     lazy = false,
   },
-  install = { colorscheme = { 'claude-theme', 'default' } },
   change_detection = { notify = false },
   ui = {
     border = 'single',
