@@ -5,6 +5,8 @@ My personal [Neovim](https://neovim.io/) configuration.
 ## Setup
 
 ```sh
+brew install neovim
+brew install --cask font-jetbrains-mono-nerd-font
 git clone https://github.com/thomd/neovim-config.git ~/.config/nvim
 ```
 
