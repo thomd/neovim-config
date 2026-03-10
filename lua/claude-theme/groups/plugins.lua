@@ -113,23 +113,6 @@ local function plugins(p)
     OilTypeLink = { fg = p.purple },
     OilTypeSocket = { fg = p.accent2 },
 
-    -- gitsigns
-    GitSignsAdd = { fg = p.gsign_add },
-    GitSignsChange = { fg = p.gsign_change },
-    GitSignsDelete = { fg = p.gsign_del },
-    GitSignsTopDelete = { fg = p.gsign_del },
-    GitSignsChangeDelete = { fg = p.accent },
-    GitSignsUntracked = { fg = p.gsign_untracked },
-    GitSignsAddNr = { link = 'GitSignsAdd' },
-    GitSignsChangeNr = { link = 'GitSignsChange' },
-    GitSignsDeleteNr = { link = 'GitSignsDelete' },
-    GitSignsAddLn = { bg = p.diff_add },
-    GitSignsChangeLn = { bg = p.diff_change },
-    GitSignsDeleteLn = { bg = p.diff_del },
-    GitSignsAddPreview = { bg = p.diff_add },
-    GitSignsDeletePreview = { bg = p.diff_del },
-    GitSignsCurrentLineBlame = { fg = p.fg3, italic = true },
-
     -- neogit
     NeogitBranch = { fg = p.accent },
     NeogitRemote = { fg = p.blue },

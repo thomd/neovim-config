@@ -41,7 +41,6 @@ autocmd('FileType', {
   pattern = {
     'checkhealth',
     'git',
-    'gitsigns-blame',
     'help',
     'lspinfo',
     'notify',
@@ -94,33 +93,18 @@ local function parsecolor(c)
   return nil
 end
 
-autocmd('TermResponse', {
-  group = augroup('claude_background_sync', { clear = true }),
-  nested = true,
-  desc = 'Update background based on terminal emulator response',
-  callback = function(args)
-    local resp = args.data.sequence
-    local r, g, b = resp:match('^\027%]11;rgb:(%x+)/(%x+)/(%x+)')
-    if r and g and b then
-      local rr, gg, bb = parsecolor(r), parsecolor(g), parsecolor(b)
-      if rr and gg and bb then
-        local luminance = (0.299 * rr) + (0.587 * gg) + (0.114 * bb)
-        local new_bg = luminance < 0.5 and 'dark' or 'light'
-        if vim.o.background ~= new_bg then
-          vim.o.background = new_bg
-          vim.cmd.colorscheme('claude-theme')
-        end
-      end
+-- Auto-trim trailing whitespace on save (skip markdown)
+autocmd('BufWritePre', {
+  group = augroup('trim_whitespace', { clear = true }),
+  callback = function()
+    if not vim.bo.modifiable or vim.bo.buftype ~= '' then return end
+    if vim.bo.filetype ~= 'markdown' then
+      local save_cursor = vim.fn.getpos('.')
+      vim.cmd([[%s/\s\+$//e]])
+      vim.fn.setpos('.', save_cursor)
     end
   end,
 })
-
--- Trim whitespace command
-vim.api.nvim_create_user_command('TrimWhitespace', function()
-  local save_cursor = vim.fn.getpos('.')
-  vim.cmd([[%s/\s\+$//e]])
-  vim.fn.setpos('.', save_cursor)
-end, { desc = 'trim trailing whitespace' })
 
 -- Disable statuscolumn for specific filetypes/buftypes
 local dominated_filetypes = { help = true, lazy = true, mason = true, NvimTree = true, oil = true, trouble = true }

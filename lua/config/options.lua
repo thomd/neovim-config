@@ -1,35 +1,42 @@
 local opt = vim.opt
 local o = vim.o
 
+o.backup = false
 o.clipboard = ''
+o.cmdheight = 2
 o.completeopt = 'menu,menuone,noselect'
 o.cursorline = true
 o.expandtab = true
 o.ignorecase = true
-o.linebreak = true
-o.mouse = 'nv'
+o.mouse = 'a'
 o.number = true
 o.numberwidth = 2
 o.pumheight = 10
 o.relativenumber = true
 o.scrolloff = 8
-o.shiftwidth = 4
+o.shiftwidth = 2
 o.showmode = false
 o.sidescrolloff = 8
 o.signcolumn = 'auto:1'
 o.smartcase = true
 o.smartindent = true
 o.smoothscroll = true
-o.softtabstop = 4
+o.softtabstop = 2
 o.splitbelow = true
 o.splitright = true
 o.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} '
-o.tabstop = 4
+o.synmaxcol = 2048
+o.tabstop = 8
+o.textwidth = 110
 o.timeoutlen = 300
 o.undofile = true
 o.undolevels = 1000
+o.undoreload = 10000
 o.updatetime = 250
+opt.whichwrap:append('<,>,h,l,[,]')
 o.wrap = false
+o.writebackup = false
+opt.iskeyword:append('-')
 
 -- Cursor appearance and blinking
 o.guicursor = table.concat({
@@ -62,7 +69,7 @@ o.foldlevel = 99
 o.foldlevelstart = 99
 
 -- Spelling
-o.spelllang = 'en_us'
+o.spelllang = 'en_gb'
 o.spellsuggest = 'best,20' -- Limits to 20 suggestions
 
 -- Colorscheme (colors/claude-theme.lua is in rtp from stdpath('config'))

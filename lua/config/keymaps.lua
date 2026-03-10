@@ -4,13 +4,18 @@ local map = vim.keymap.set
 map('i', 'jk', '<Esc>', { desc = 'escape' })
 map('i', 'jj', '<Esc>', { desc = 'escape' })
 
+-- Swap v and CTRL-V: block mode is more useful than visual mode
+map('n', 'v', '<C-V>', { desc = 'block visual' })
+map('n', '<C-V>', 'v', { desc = 'visual' })
+map('v', 'v', '<C-V>', { desc = 'block visual' })
+map('v', '<C-V>', 'v', { desc = 'visual' })
+
 -- Better movement
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'down' })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'up' })
 
 -- Buffers
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'previous buffer' })
-map('n', '<leader>,', '<cmd>bprevious<cr>', { desc = 'previous buffer' })
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'next buffer' })
 map('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'delete buffer' })
 map('n', '<leader>bD', '<cmd>bdelete!<cr>', { desc = 'delete buffer (force)' })
@@ -61,11 +66,20 @@ map('n', '<leader>cw', '<cmd>TrimWhitespace<cr>', { desc = 'trim whitespace' })
 -- Lazy
 map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy' })
 
+-- File tree
+map('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', { desc = 'toggle file tree' })
+
+-- Tab navigation
+map('n', '<S-Left>', '<cmd>tabp<cr>', { desc = 'previous tab' })
+map('n', '<S-Right>', '<cmd>tabn<cr>', { desc = 'next tab' })
+
+-- Spell toggle
+map('n', '<leader>s', '<cmd>set spell!<cr>', { desc = 'toggle spell' })
+
 -- Toggle options
 local toggles = {
   { 'w', 'wrap', 'wrap' },
   { 'n', 'relativenumber', 'relative numbers' },
-  { 's', 'spell', 'spelling' },
   { 'c', 'cursorline', 'cursorline' },
   { 'h', 'list', 'hidden chars' },
 }
