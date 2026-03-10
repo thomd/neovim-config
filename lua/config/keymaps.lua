@@ -66,8 +66,6 @@ map('n', '<leader>cw', '<cmd>TrimWhitespace<cr>', { desc = 'trim whitespace' })
 -- Lazy
 map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy' })
 
--- File tree
-map('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', { desc = 'toggle file tree' })
 
 -- Tab navigation
 map('n', '<S-Left>', '<cmd>tabp<cr>', { desc = 'previous tab' })

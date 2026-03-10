@@ -2,7 +2,7 @@ return {
   {
     'nvim-tree/nvim-tree.lua',
     keys = {
-      { '<leader>tr', '<cmd>NvimTreeToggle<cr>', desc = 'file tree' },
+      { '<leader>n', '<cmd>NvimTreeToggle<cr>', desc = 'toggle file tree' },
     },
     opts = {
       hijack_directories = {
@@ -12,8 +12,8 @@ return {
         enable = true,
       },
       view = {
-        side = 'right',
-        width = 25,
+        side = 'left',
+        width = 40,
       },
       renderer = {
         group_empty = true,
@@ -23,6 +23,14 @@ return {
         highlight_modified = 'name',
         indent_markers = {
           enable = false,
+        },
+        icons = {
+          show = {
+            file = false,
+            folder = false,
+            folder_arrow = false,
+            git = false,
+          },
         },
       },
       diagnostics = {
