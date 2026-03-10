@@ -10,17 +10,22 @@ git clone https://github.com/thomd/neovim-config.git ~/.config/nvim
 
 ## Plugins
 
-- [Blink Completion](https://github.com/saghen/blink.cmp): `lua/plugins/blink.lua`
+- [barbar.nvim](https://github.com/romgrk/barbar.nvim): `lua/plugins/barbar.lua`
+- [Comment.nvim](https://github.com/numToStr/Comment.nvim): `lua/plugins/coding.lua`
+- [nvim-autopairs](https://github.com/windwp/nvim-autopairs): `lua/plugins/coding.lua`
+- [nvim-surround](https://github.com/kylechui/nvim-surround): `lua/plugins/coding.lua`
+- [multiple-cursors.nvim](https://github.com/brenton-leighton/multiple-cursors.nvim): `lua/plugins/coding.lua`
+- [nvim-cursorline](https://github.com/ya2s/nvim-cursorline): `lua/plugins/coding.lua`
 - [vim match-up](https://github.com/andymass/vim-matchup): `lua/plugins/editor.lua`
 - [Indent Blankline](https://github.com/lukas-reineke/indent-blankline.nvim): `lua/plugins/editor.lua`
 - [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim): `lua/plugins/editor.lua`
-- [File Explorer For Neovim](https://github.com/nvim-tree/nvim-tree.lua): `lua/plugins/explorer.lua`
+- [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua): `lua/plugins/explorer.lua`
 - [conform.nvim](https://github.com/stevearc/conform.nvim): `lua/plugins/format.lua`
+- [fzf-lua](https://github.com/ibhagwan/fzf-lua): `lua/plugins/fzf.lua`
 - [mini.align](https://github.com/nvim-mini/mini.align): `lua/plugins/mini.lua`
 - [mini.move](https://github.com/nvim-mini/mini.move): `lua/plugins/mini.lua`
-- [mini.statusline](https://github.com/nvim-mini/mini.statusline): `lua/plugins/mini.lua`
 - [mini.splitjoin](https://github.com/nvim-mini/mini.splitjoin): `lua/plugins/mini.lua`
-- [fzf](https://github.com/ibhagwan/fzf-lua): `lua/plugins/fzf.lua`
+- [mini.statusline](https://github.com/nvim-mini/mini.statusline): `lua/plugins/mini.lua`
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter): `lua/plugins/treesitter.lua`
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects): `lua/plugins/treesitter.lua`
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context): `lua/plugins/treesitter.lua`

@@ -64,6 +64,16 @@ return {
       },
     },
     opts = {
+      heading = { icons = {} },
+      code = { sign = false },
+      bullet = { icons = { '•', '◦', '▪', '▫' } },
+      checkbox = {
+        unchecked = { icon = '[ ]' },
+        checked = { icon = '[x]' },
+        custom = { todo = { raw = '[-]', rendered = '[-]' } },
+      },
+      quote = { icon = '│' },
+      link = { enabled = false },
       pipe_table = { preset = 'round' },
       latex = { enabled = false },
     },
