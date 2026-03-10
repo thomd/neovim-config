@@ -16,7 +16,6 @@ git clone https://github.com/thomd/neovim-config.git ~/.config/nvim
 - [nvim-surround](https://github.com/kylechui/nvim-surround): `lua/plugins/coding.lua`
 - [multiple-cursors.nvim](https://github.com/brenton-leighton/multiple-cursors.nvim): `lua/plugins/coding.lua`
 - [nvim-cursorline](https://github.com/ya2s/nvim-cursorline): `lua/plugins/coding.lua`
-- [vim match-up](https://github.com/andymass/vim-matchup): `lua/plugins/editor.lua`
 - [Indent Blankline](https://github.com/lukas-reineke/indent-blankline.nvim): `lua/plugins/editor.lua`
 - [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim): `lua/plugins/editor.lua`
 - [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua): `lua/plugins/explorer.lua`
