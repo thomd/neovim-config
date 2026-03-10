@@ -1,6 +1,4 @@
-SHELL   := /usr/bin/env bash
-ROOT    := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-NVIM    := nvim --headless -Es -u $(ROOT)/init.lua
+SHELL := /usr/bin/env bash
 
 .PHONY: clean
 
