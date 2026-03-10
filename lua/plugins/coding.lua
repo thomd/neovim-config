@@ -3,7 +3,10 @@ return {
   {
     'numToStr/Comment.nvim',
     event = 'BufReadPost',
-    opts = {},
+    opts = {
+      toggler = { line = '<leader>c' },
+      opleader = { line = '<leader>c' },
+    },
   },
 
   -- Auto-close brackets/quotes (delimitMate equivalent)
