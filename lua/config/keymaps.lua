@@ -58,12 +58,18 @@ map('n', '<leader>xp', '<cmd>cprev<cr>', { desc = 'previous quickfix' })
 
 -- Code
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'line diagnostics' })
-map('n', '<leader>cw', '<cmd>TrimWhitespace<cr>', { desc = 'trim whitespace' })
+map('n', '<leader>cw', function()
+  local save_cursor = vim.fn.getpos('.')
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  for i, line in ipairs(lines) do
+    lines[i] = line:gsub('%s+$', '')
+  end
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+  vim.fn.setpos('.', save_cursor)
+end, { desc = 'trim whitespace' })
 
 -- Lazy
 map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy' })
-
-
 
 -- Spell toggle
 map('n', '<leader>s', '<cmd>set spell!<cr>', { desc = 'toggle spell' })

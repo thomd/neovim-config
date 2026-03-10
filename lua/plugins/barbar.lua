@@ -19,27 +19,47 @@ return {
       vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete', 'BufWipeout' }, {
         callback = vim.schedule_wrap(update_tabline),
       })
-      local bg = vim.api.nvim_get_hl(0, { name = 'Normal' }).bg
-      local fill = bg and string.format('#%06x', bg) or 'NONE'
+      local function set_barbar_colors()
+        local bg = vim.api.nvim_get_hl(0, { name = 'Normal' }).bg
+        local fill = bg and string.format('#%06x', bg) or 'NONE'
+        vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = fill })
 
-      -- Tabline fill: same as editor background
-      vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = fill })
-
-      -- Inactive tabs: darker background
-      local inactive = { bg = '#1a1a1a', fg = '#888888' }
-      vim.api.nvim_set_hl(0, 'BufferInactive', inactive)
-      vim.api.nvim_set_hl(0, 'BufferInactiveMod', inactive)
-      vim.api.nvim_set_hl(0, 'BufferInactiveSign', { bg = '#1a1a1a', fg = '#1a1a1a' })
-
-      -- Current tab: lighter background
-      local current = { bg = '#3a3a3a', fg = '#ffffff', bold = true }
-      vim.api.nvim_set_hl(0, 'BufferCurrent', current)
-      vim.api.nvim_set_hl(0, 'BufferCurrentMod', current)
-      vim.api.nvim_set_hl(0, 'BufferCurrentSign', { bg = '#3a3a3a', fg = '#3a3a3a' })
+        local is_dark = vim.o.background == 'dark'
+        if is_dark then
+          local inactive = { bg = '#1a1a1a', fg = '#888888' }
+          vim.api.nvim_set_hl(0, 'BufferInactive', inactive)
+          vim.api.nvim_set_hl(0, 'BufferInactiveMod', inactive)
+          vim.api.nvim_set_hl(0, 'BufferInactiveSign', { bg = '#1a1a1a', fg = '#1a1a1a' })
+          vim.api.nvim_set_hl(0, 'BufferInactiveModBtn', { bg = '#1a1a1a', fg = '#ffaf00' })
+          local current = { bg = '#3a3a3a', fg = '#ffffff', bold = true }
+          vim.api.nvim_set_hl(0, 'BufferCurrent', current)
+          vim.api.nvim_set_hl(0, 'BufferCurrentMod', current)
+          vim.api.nvim_set_hl(0, 'BufferCurrentSign', { bg = '#3a3a3a', fg = '#3a3a3a' })
+          vim.api.nvim_set_hl(0, 'BufferCurrentModBtn', { bg = '#3a3a3a', fg = '#ffaf00' })
+        else
+          local inactive = { bg = '#e4e4e4', fg = '#888888' }
+          vim.api.nvim_set_hl(0, 'BufferInactive', inactive)
+          vim.api.nvim_set_hl(0, 'BufferInactiveMod', inactive)
+          vim.api.nvim_set_hl(0, 'BufferInactiveSign', { bg = '#e4e4e4', fg = '#e4e4e4' })
+          vim.api.nvim_set_hl(0, 'BufferInactiveModBtn', { bg = '#e4e4e4', fg = '#ffaf00' })
+          local current = { bg = '#d0d0d0', fg = '#000000', bold = true }
+          vim.api.nvim_set_hl(0, 'BufferCurrent', current)
+          vim.api.nvim_set_hl(0, 'BufferCurrentMod', current)
+          vim.api.nvim_set_hl(0, 'BufferCurrentSign', { bg = '#d0d0d0', fg = '#d0d0d0' })
+          vim.api.nvim_set_hl(0, 'BufferCurrentModBtn', { bg = '#d0d0d0', fg = '#ffaf00' })
+        end
+      end
+      set_barbar_colors()
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        group = vim.api.nvim_create_augroup('barbar_colors', { clear = true }),
+        callback = set_barbar_colors,
+      })
     end,
     opts = {
       animation = false,
       auto_hide = false,
+      padding = 0,
+      minimum_padding = 0,
       icons = {
         buffer_index = false,
         buffer_number = false,

@@ -72,5 +72,4 @@ o.foldlevelstart = 99
 o.spelllang = 'en_gb'
 o.spellsuggest = 'best,20' -- Limits to 20 suggestions
 
--- Colorscheme
-o.termguicolors = true
+-- Colorscheme (termguicolors is auto-detected since Neovim 0.10+)

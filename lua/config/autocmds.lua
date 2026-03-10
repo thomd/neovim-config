@@ -80,19 +80,6 @@ autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   end,
 })
 
--- Sync background (dark/light) from terminal emulator via OSC 11
-local function parsecolor(c)
-  if c:match('^%x+$') then
-    local val = tonumber(c, 16)
-    if #c == 4 then
-      return val / 65535
-    elseif #c == 2 then
-      return val / 255
-    end
-  end
-  return nil
-end
-
 -- Auto-trim trailing whitespace on save (skip markdown)
 autocmd('BufWritePre', {
   group = augroup('trim_whitespace', { clear = true }),
@@ -100,7 +87,11 @@ autocmd('BufWritePre', {
     if not vim.bo.modifiable or vim.bo.buftype ~= '' then return end
     if vim.bo.filetype ~= 'markdown' then
       local save_cursor = vim.fn.getpos('.')
-      vim.cmd([[%s/\s\+$//e]])
+      local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+      for i, line in ipairs(lines) do
+        lines[i] = line:gsub('%s+$', '')
+      end
+      vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
       vim.fn.setpos('.', save_cursor)
     end
   end,

@@ -25,53 +25,53 @@ return {
     end,
     config = function(_, opts)
       require('nvim-tree').setup({
-      hijack_directories = {
-        enable = false,
-      },
-      update_focused_file = {
-        enable = true,
-      },
-      view = {
-        side = 'left',
-        width = 40,
-        cursorline = true,
-      },
-      renderer = {
-        group_empty = true,
-        highlight_git = 'name',
-        highlight_opened_files = 'name',
-        highlight_diagnostics = 'name',
-        highlight_modified = 'name',
-        indent_markers = {
+        hijack_directories = {
           enable = false,
         },
-        icons = {
-          show = {
-            file = false,
-            folder = false,
-            folder_arrow = true,
-            git = false,
+        update_focused_file = {
+          enable = true,
+        },
+        view = {
+          side = 'left',
+          width = 40,
+          cursorline = true,
+        },
+        renderer = {
+          group_empty = true,
+          highlight_git = 'name',
+          highlight_opened_files = 'name',
+          highlight_diagnostics = 'name',
+          highlight_modified = 'name',
+          indent_markers = {
+            enable = false,
           },
-          glyphs = {
-            folder = {
-              arrow_closed = '▸',
-              arrow_open = '▾',
+          icons = {
+            show = {
+              file = false,
+              folder = false,
+              folder_arrow = true,
+              git = false,
+            },
+            glyphs = {
+              folder = {
+                arrow_closed = '▸',
+                arrow_open = '▾',
+              },
             },
           },
         },
-      },
-      diagnostics = {
-        enable = true,
-        show_on_dirs = true,
-      },
-      modified = {
-        enable = true,
-      },
-      filters = {
-        custom = { '^.git$' },
-      },
-      on_attach = opts.on_attach,
-    })
+        diagnostics = {
+          enable = true,
+          show_on_dirs = true,
+        },
+        modified = {
+          enable = true,
+        },
+        filters = {
+          custom = { '^.git$' },
+        },
+        on_attach = opts.on_attach,
+      })
     end,
   },
 }
