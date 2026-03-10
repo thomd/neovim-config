@@ -28,7 +28,7 @@ o.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} '
 o.synmaxcol = 2048
 o.tabstop = 8
 o.textwidth = 110
-o.timeoutlen = 300
+o.timeoutlen = 500
 o.undofile = true
 o.undolevels = 1000
 o.undoreload = 10000
