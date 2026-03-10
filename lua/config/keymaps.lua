@@ -14,12 +14,9 @@ map('v', '<C-V>', 'v', { desc = 'visual' })
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'down' })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'up' })
 
--- Buffers
-map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'previous buffer' })
-map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'next buffer' })
-map('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'delete buffer' })
-map('n', '<leader>bD', '<cmd>bdelete!<cr>', { desc = 'delete buffer (force)' })
-map('n', '<leader>bo', '<cmd>%bdelete|edit#|bdelete#<cr>', { desc = 'delete other buffers' })
+-- Buffers (barbar)
+map('n', '<S-Left>', '<cmd>BufferPrevious<cr>', { desc = 'previous buffer' })
+map('n', '<S-Right>', '<cmd>BufferNext<cr>', { desc = 'next buffer' })
 
 -- Windows
 map('n', '<C-h>', '<C-w>h', { desc = 'go to left window' })
@@ -67,9 +64,6 @@ map('n', '<leader>cw', '<cmd>TrimWhitespace<cr>', { desc = 'trim whitespace' })
 map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy' })
 
 
--- Tab navigation
-map('n', '<S-Left>', '<cmd>tabp<cr>', { desc = 'previous tab' })
-map('n', '<S-Right>', '<cmd>tabn<cr>', { desc = 'next tab' })
 
 -- Spell toggle
 map('n', '<leader>s', '<cmd>set spell!<cr>', { desc = 'toggle spell' })

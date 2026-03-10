@@ -8,10 +8,12 @@ function M.indent(size)
 end
 
 function M.treesitter()
-  vim.treesitter.start()
-  vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-  vim.wo[0][0].foldmethod = 'expr'
-  vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+  local ok = pcall(vim.treesitter.start)
+  if ok then
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    vim.wo[0][0].foldmethod = 'expr'
+    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+  end
   return M
 end
 

@@ -42,7 +42,12 @@ return {
         pattern = 'LazyDone',
         once = true,
         callback = function()
-          require('nvim-treesitter').install(parsers)
+          local missing = vim.tbl_filter(function(lang)
+            return not pcall(vim.treesitter.language.add, lang)
+          end, parsers)
+          if #missing > 0 then
+            require('nvim-treesitter').install(missing)
+          end
         end,
       })
     end,
