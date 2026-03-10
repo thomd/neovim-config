@@ -20,7 +20,18 @@ return {
     'nvim-mini/mini.move',
     version = false,
     event = 'BufReadPost',
-    opts = {},
+    opts = {
+      mappings = {
+        up = '_',
+        down = '-',
+        line_up = '_',
+        line_down = '-',
+        left = '',
+        right = '',
+        line_left = '',
+        line_right = '',
+      },
+    },
   },
   {
     'nvim-mini/mini.statusline',
