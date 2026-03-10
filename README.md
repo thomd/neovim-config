@@ -20,8 +20,6 @@ git clone https://github.com/thomd/neovim-config.git ~/.config/nvim
 - [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim): `lua/plugins/editor.lua`
 - [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua): `lua/plugins/explorer.lua`
 - [conform.nvim](https://github.com/stevearc/conform.nvim): `lua/plugins/format.lua`
-- [fzf-lua](https://github.com/ibhagwan/fzf-lua): `lua/plugins/fzf.lua`
-- [mini.align](https://github.com/nvim-mini/mini.align): `lua/plugins/mini.lua`
 - [mini.move](https://github.com/nvim-mini/mini.move): `lua/plugins/mini.lua`
 - [mini.splitjoin](https://github.com/nvim-mini/mini.splitjoin): `lua/plugins/mini.lua`
 - [mini.statusline](https://github.com/nvim-mini/mini.statusline): `lua/plugins/mini.lua`

@@ -1,15 +1,6 @@
 -- https://github.com/nvim-mini/mini.nvim
 return {
   {
-    'nvim-mini/mini.align',
-    version = false,
-    keys = {
-      { 'ga', mode = { 'n', 'x' }, desc = 'align' },
-      { 'gA', mode = { 'n', 'x' }, desc = 'align with preview' },
-    },
-    opts = {},
-  },
-  {
     'nvim-mini/mini.splitjoin',
     version = false,
     keys = {
