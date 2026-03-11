@@ -16,7 +16,6 @@ return {
           node_type = {
             bash = { 'if_statement', 'for_statement', 'while_statement', 'case_statement', 'compound_statement' },
             css = { 'rule_set', 'media_statement', 'block' },
-            hcl = { 'block', 'object' },
             javascript = { 'object', 'array' },
             lua = { 'table_constructor' },
             python = { 'if_statement', 'for_statement', 'while_statement', 'with_statement', 'try_statement' },
