@@ -24,6 +24,26 @@ require('lazy').setup({
   change_detection = { notify = false },
   ui = {
     border = 'single',
+    icons = {
+      cmd = '',
+      config = '',
+      event = '',
+      favorite = '',
+      ft = '',
+      init = '',
+      import = '',
+      keys = '',
+      lazy = '',
+      loaded = '*',
+      not_loaded = 'o',
+      plugin = '',
+      runtime = '',
+      require = '',
+      source = '',
+      start = '>',
+      task = '',
+      list = { '-', '-', '-', '-' },
+    },
   },
   performance = {
     rtp = {
