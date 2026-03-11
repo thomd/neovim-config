@@ -52,7 +52,7 @@ return {
     },
     opts = {
       heading = { icons = {}, sign = false },
-      code = { sign = false },
+      code = { sign = false, language_name = false, language_icon = false },
       bullet = { icons = { '•', '◦', '▪', '▫' } },
       checkbox = {
         unchecked = { icon = '[ ]' },
