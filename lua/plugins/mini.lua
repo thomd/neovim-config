@@ -53,8 +53,9 @@ return {
           vim.api.nvim_set_hl(0, 'MiniStatuslineModeOther', { fg = '#e4e4e4', bg = '#585858', bold = true })
           -- Inactive statusline
           vim.api.nvim_set_hl(0, 'MiniStatuslineInactive', { fg = '#9e9e9e', bg = '#121212' })
-          -- Orange accent for modified indicator
+          -- Orange accent for modified indicator and copilot
           vim.api.nvim_set_hl(0, 'StatusLineModified', { fg = '#ffaf00', bg = '#121212', bold = true })
+          vim.api.nvim_set_hl(0, 'StatusLineCopilot', { fg = '#ffaf00', bg = '#303030' })
           -- Command line area: black/transparent background
           vim.api.nvim_set_hl(0, 'MsgArea', { fg = '#e4e4e4', bg = '#000000' })
         else
@@ -69,6 +70,7 @@ return {
           vim.api.nvim_set_hl(0, 'MiniStatuslineModeOther', { fg = '#e4e4e4', bg = '#585858', bold = true })
           vim.api.nvim_set_hl(0, 'MiniStatuslineInactive', { fg = '#444444', bg = '#e4e4e4' })
           vim.api.nvim_set_hl(0, 'StatusLineModified', { fg = '#ff8700', bg = '#e4e4e4', bold = true })
+          vim.api.nvim_set_hl(0, 'StatusLineCopilot', { fg = '#ff8700', bg = '#d0d0d0' })
           vim.api.nvim_set_hl(0, 'MsgArea', { fg = '#444444', bg = '#ffffff' })
         end
       end
@@ -115,9 +117,12 @@ return {
             local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
             local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
 
+            local ok, enabled = pcall(vim.fn['copilot#Enabled'])
+            local copilot = (ok and enabled == 1) and '%#StatusLineCopilot#[copilot]%#MiniStatuslineDevinfo#' or ''
+
             return MiniStatusline.combine_groups({
               { hl = mode_hl, strings = { mode } },
-              { hl = 'MiniStatuslineDevinfo', strings = { git, diagnostics } },
+              { hl = 'MiniStatuslineDevinfo', strings = { git, copilot, diagnostics } },
               '%<',
               { hl = 'MiniStatuslineFilename', strings = { filename .. modified } },
               '%=',
