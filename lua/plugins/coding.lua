@@ -105,6 +105,11 @@ return {
   {
     'ya2s/nvim-cursorline',
     event = 'BufReadPost',
-    opts = {},
+    opts = {
+      cursorline = {
+        enable = true,
+        timeout = 0,
+      },
+    },
   },
 }
