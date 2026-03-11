@@ -10,7 +10,7 @@ o.expandtab = true
 o.ignorecase = true
 o.mouse = 'a'
 o.number = true
-o.numberwidth = 2
+o.numberwidth = 4
 o.pumheight = 10
 o.relativenumber = true
 o.scrolloff = 8
@@ -24,7 +24,7 @@ o.smoothscroll = true
 o.softtabstop = 2
 o.splitbelow = true
 o.splitright = true
-o.statuscolumn = '%s%=%{&relativenumber&&v:relnum?v:relnum:v:lnum} '
+o.statuscolumn = '%s%{%v:relnum?"%= %{v:relnum} ":"%- %{v:lnum} "%}'
 o.synmaxcol = 2048
 o.tabstop = 8
 o.textwidth = 110
@@ -53,7 +53,7 @@ opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Fill chars
 opt.fillchars:append({
   diff = '░',
-  eob = ' ',
+  eob = '~',
   fold = '⋯',
   foldopen = '▼',
   foldclose = '▶',
