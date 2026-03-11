@@ -24,7 +24,7 @@ o.smoothscroll = true
 o.softtabstop = 2
 o.splitbelow = true
 o.splitright = true
-o.statuscolumn = '%s%{%v:relnum?"%= %{v:relnum} ":"%- %{v:lnum} "%}'
+o.statuscolumn = '%s%{%v:relnum?"%= %{&relativenumber?v:relnum:v:lnum} ":"%- %{v:lnum} "%}'
 o.synmaxcol = 2048
 o.tabstop = 8
 o.textwidth = 110

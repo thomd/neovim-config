@@ -80,7 +80,7 @@ local toggles = {
   { 'c', 'cursorline', 'cursorline' },
   { 'h', 'list', 'hidden chars' },
 }
-map('n', '<leader>m', function() vim.wo.relativenumber = not vim.wo.relativenumber end, { desc = 'relative numbers' })
+map('n', '<leader>m', function() vim.wo.relativenumber = not vim.wo.relativenumber end, { desc = 'relative numbers', nowait = true })
 for _, t in ipairs(toggles) do
   map('n', '<leader>t' .. t[1], function()
     vim.wo[t[2]] = not vim.wo[t[2]]
