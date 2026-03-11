@@ -101,6 +101,8 @@ map('n', '<leader>ta', function()
   end
 end, { desc = 'auto-completion' })
 
+map('n', '<leader>i', '<cmd>IBLToggle<cr>', { desc = 'indent lines' })
+
 map('n', '<leader>tL', function()
   vim.g.disable_auto_lint = not vim.g.disable_auto_lint
   if vim.g.disable_auto_lint then

@@ -4,7 +4,7 @@ return {
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>cf',
+        '<leader>f',
         function()
           local pos = vim.api.nvim_win_get_cursor(0)
           require('conform').format({ async = true, lsp_format = 'fallback' }, function(err)
