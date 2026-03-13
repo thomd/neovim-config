@@ -97,6 +97,24 @@ autocmd('BufWritePre', {
   end,
 })
 
+-- Hide cursor in NvimTree
+autocmd('FileType', {
+  group = augroup('nvimtree_cursor', { clear = true }),
+  pattern = 'NvimTree',
+  callback = function()
+    local saved = vim.o.guicursor
+    vim.api.nvim_set_hl(0, 'NvimTreeHiddenCursor', { blend = 100, nocombine = true })
+    vim.o.guicursor = 'a:NvimTreeHiddenCursor'
+    autocmd('BufLeave', {
+      buffer = 0,
+      once = true,
+      callback = function()
+        vim.o.guicursor = saved
+      end,
+    })
+  end,
+})
+
 -- Disable statuscolumn for specific filetypes/buftypes
 local dominated_filetypes = { help = true, lazy = true, mason = true, NvimTree = true, oil = true, trouble = true }
 autocmd('BufWinEnter', {

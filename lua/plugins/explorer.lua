@@ -46,6 +46,7 @@ return {
             enable = false,
           },
           icons = {
+            symlink_arrow = ' ⟶ ',
             show = {
               file = false,
               folder = false,
@@ -54,8 +55,8 @@ return {
             },
             glyphs = {
               folder = {
-                arrow_closed = '▸',
-                arrow_open = '▾',
+                arrow_closed = '▷',
+                arrow_open = '▽',
               },
             },
           },
