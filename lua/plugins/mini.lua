@@ -108,11 +108,8 @@ return {
               enc_fmt = encoding .. '[' .. fileformat .. ']'
             end
 
-            -- Location (like airline section Z): ☰ line/total:col
-            local cur = vim.fn.line('.')
-            local total = vim.fn.line('$')
-            local col = vim.fn.virtcol('.')
-            local location = string.format('☰ %d/%d:%d', cur, total, col)
+            -- Location: percentage, then line:column
+            local location = '%p%%   %l:%v'
 
             local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
             local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
