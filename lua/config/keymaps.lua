@@ -68,9 +68,6 @@ map('n', '<leader>cw', function()
   vim.fn.setpos('.', save_cursor)
 end, { desc = 'trim whitespace' })
 
--- Lazy
-map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy' })
-
 -- Spell toggle
 map('n', '<leader>s', '<cmd>set spell!<cr>', { desc = 'toggle spell' })
 
@@ -80,7 +77,7 @@ local toggles = {
   { 'c', 'cursorline', 'cursorline' },
   { 'h', 'list', 'hidden chars' },
 }
-map('n', '<leader>m', function() vim.wo.relativenumber = not vim.wo.relativenumber end, { desc = 'relative numbers', nowait = true })
+map('n', '<leader>l', function() vim.wo.relativenumber = not vim.wo.relativenumber end, { desc = 'relative numbers', nowait = true })
 for _, t in ipairs(toggles) do
   map('n', '<leader>t' .. t[1], function()
     vim.wo[t[2]] = not vim.wo[t[2]]

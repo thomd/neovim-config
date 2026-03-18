@@ -43,7 +43,7 @@ return {
     ft = { 'markdown' },
     keys = {
       {
-        '<leader>tm',
+        '<leader>m',
         function()
           require('render-markdown').toggle()
         end,
@@ -51,6 +51,7 @@ return {
       },
     },
     opts = {
+      enabled = false,
       heading = { icons = {}, sign = false },
       code = { sign = false, language_name = false, language_icon = false, left_pad = 4 },
       bullet = { icons = { '•', '◦', '▪', '▫' } },
@@ -61,7 +62,7 @@ return {
       },
       quote = { icon = '│' },
       link = { enabled = false },
-      pipe_table = { preset = 'round' },
+      pipe_table = { preset = 'round', head = 'RenderMarkdownTableHead', row = 'RenderMarkdownTableRow' },
       latex = { enabled = false },
     },
   },
