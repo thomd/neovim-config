@@ -53,7 +53,7 @@ return {
     opts = {
       enabled = false,
       heading = { icons = {}, sign = false },
-      code = { sign = false, language_name = false, language_icon = false, left_pad = 4 },
+      code = { sign = false, language_name = false, language_icon = false, left_pad = 4, border = 'hide' },
       bullet = { icons = { '•', '◦', '▪', '▫' } },
       checkbox = {
         unchecked = { icon = '[ ]' },
@@ -62,7 +62,7 @@ return {
       },
       quote = { icon = '│' },
       link = { enabled = false },
-      pipe_table = { preset = 'round', head = 'RenderMarkdownTableHead', row = 'RenderMarkdownTableRow' },
+      pipe_table = { preset = 'round', border_enabled = false, head = 'RenderMarkdownTableHead', row = 'RenderMarkdownTableRow' },
       latex = { enabled = false },
     },
   },
