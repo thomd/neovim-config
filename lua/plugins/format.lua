@@ -1,6 +1,7 @@
 return {
   {
     'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
       {
@@ -22,6 +23,19 @@ return {
       },
     },
     opts = {
+      format_on_save = function(bufnr)
+        -- Only format if a .prettierrc exists in cwd (or use for all formatters)
+        local prettier_fts = {
+          css = true, html = true, javascript = true, javascriptreact = true,
+          json = true, jsonc = true, less = true, markdown = true,
+          scss = true, typescript = true, yaml = true,
+        }
+        local ft = vim.bo[bufnr].filetype
+        if prettier_fts[ft] and vim.fn.filereadable('.prettierrc') == 0 then
+          return
+        end
+        return { timeout_ms = 3000, lsp_format = 'fallback' }
+      end,
       formatters_by_ft = {
         bash = { 'shfmt' },
         css = { 'prettier' },
