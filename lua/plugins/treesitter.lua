@@ -123,6 +123,9 @@ return {
     opts = {
       max_lines = 3,
       min_window_height = 20,
+      on_attach = function(buf)
+        return vim.bo[buf].filetype ~= 'markdown'
+      end,
     },
     keys = {
       {
