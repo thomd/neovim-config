@@ -97,6 +97,24 @@ autocmd('BufWritePre', {
   end,
 })
 
+-- :q closes buffer instead of quitting when multiple buffers are open
+vim.api.nvim_create_user_command('Q', function(opts)
+  local listed_bufs = vim.tbl_filter(function(b)
+    return vim.api.nvim_buf_is_valid(b) and vim.bo[b].buflisted
+  end, vim.api.nvim_list_bufs())
+  if #listed_bufs > 1 and #vim.api.nvim_list_wins() == 1 then
+    if opts.bang then
+      vim.cmd('BufferClose!')
+    else
+      vim.cmd('BufferClose')
+    end
+  else
+    vim.cmd(opts.bang and 'quit!' or 'quit')
+  end
+end, { bang = true })
+vim.cmd('cabbrev <expr> q getcmdtype() == ":" && getcmdline() ==# "q" ? "Q" : "q"')
+vim.cmd('cabbrev <expr> q! getcmdtype() == ":" && getcmdline() ==# "q!" ? "Q!" : "q!"')
+
 -- Hide cursor in NvimTree
 autocmd('FileType', {
   group = augroup('nvimtree_cursor', { clear = true }),
