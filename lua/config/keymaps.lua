@@ -1,5 +1,23 @@
 local map = vim.keymap.set
 
+-- Tab: accept copilot suggestion > navigate popup > buffer completion > literal tab
+map('i', '<Tab>', function()
+  local suggestion = vim.fn['copilot#GetDisplayedSuggestion']()
+  if suggestion and suggestion.text ~= '' then
+    return vim.fn['copilot#Accept']('')
+  elseif vim.fn.pumvisible() == 1 then
+    return '<C-n>'
+  end
+  local col = vim.fn.col('.') - 1
+  if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+    return '<Tab>'
+  end
+  return '<C-n>'
+end, { expr = true, silent = true, desc = 'tab complete' })
+map('i', '<S-Tab>', function()
+  return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
+end, { expr = true, desc = 'tab complete prev' })
+
 -- Better escape
 map('i', 'jk', '<Esc>', { desc = 'escape' })
 map('i', 'jj', '<Esc>', { desc = 'escape' })

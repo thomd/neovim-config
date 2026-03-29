@@ -23,6 +23,7 @@ return {
     "github/copilot.vim",
     lazy = false,
     init = function()
+      vim.g.copilot_no_tab_map = true
       vim.g.copilot_filetypes = { markdown = false }
       if not copilot_load_state() then
         vim.g.copilot_enabled = false
