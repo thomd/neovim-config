@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+local t = function(s) return vim.api.nvim_replace_termcodes(s, true, true, true) end
 
 -- Tab: accept copilot suggestion > navigate popup > buffer completion > literal tab
 map('i', '<Tab>', function()
@@ -6,14 +7,14 @@ map('i', '<Tab>', function()
   if suggestion and suggestion.text ~= '' then
     return vim.fn['copilot#Accept']('')
   elseif vim.fn.pumvisible() == 1 then
-    return '<C-n>'
+    return t('<C-n>')
   end
   local col = vim.fn.col('.') - 1
   if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-    return '<Tab>'
+    return t('<Tab>')
   end
-  return '<C-n>'
-end, { expr = true, silent = true, desc = 'tab complete' })
+  return t('<C-n>')
+end, { expr = true, silent = true, replace_keycodes = false, desc = 'tab complete' })
 map('i', '<S-Tab>', function()
   return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
 end, { expr = true, desc = 'tab complete prev' })
