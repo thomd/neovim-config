@@ -73,4 +73,12 @@ o.spellsuggest = 'best,20' -- Limits to 20 suggestions
 -- Diagnostics
 vim.diagnostic.config({ virtual_text = true })
 
+-- Filetype overrides
+vim.filetype.add({
+  extension = {
+    tf = 'terraform',
+    tfvars = 'terraform',
+  },
+})
+
 -- Colorscheme (termguicolors is auto-detected since Neovim 0.10+)

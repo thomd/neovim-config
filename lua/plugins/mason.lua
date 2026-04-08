@@ -17,7 +17,11 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = { "terraformls" },
 			})
-			vim.lsp.config("terraformls", {})
+			vim.lsp.config("terraformls", {
+				init_options = {
+					ignoreSingleFileWarning = true,
+				},
+			})
 			vim.lsp.enable("terraformls")
 			vim.lsp.config("tflint", {})
 			vim.lsp.enable("tflint")
