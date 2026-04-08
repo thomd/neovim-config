@@ -21,6 +21,14 @@ return {
 			vim.lsp.enable("terraformls")
 			vim.lsp.config("tflint", {})
 			vim.lsp.enable("tflint")
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						hint = { enable = true },
+						diagnostics = { ignoreSingleFileWarning = true },
+					},
+				},
+			})
 		end,
 	},
 

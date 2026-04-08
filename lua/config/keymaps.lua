@@ -102,6 +102,9 @@ for _, t in ipairs(toggles) do
     vim.wo[t[2]] = not vim.wo[t[2]]
   end, { desc = t[3] })
 end
+map('n', '<leader>d', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = 'toggle diagnostics' })
 map('n', '<leader>tl', function()
   local config = vim.diagnostic.config() or {}
   local new_value = not config.virtual_lines
