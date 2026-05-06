@@ -77,6 +77,15 @@ map('n', '<leader>xp', '<cmd>cprev<cr>', { desc = 'previous quickfix' })
 
 -- Code
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'line diagnostics' })
+map('n', 'yc', function()
+  local line = vim.api.nvim_get_current_line()
+  vim.fn.setreg('"', line .. '\n', 'V')
+  vim.fn.setreg('0', line .. '\n', 'V')
+  require('Comment.api').toggle.linewise.current()
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  vim.api.nvim_buf_set_lines(0, row, row, false, { line })
+  vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
+end, { desc = 'copy line, comment original' })
 map('n', '<leader>cw', function()
   local save_cursor = vim.fn.getpos('.')
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
