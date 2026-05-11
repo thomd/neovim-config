@@ -4,6 +4,7 @@ return {
     event = 'VeryLazy',
     main = 'ibl',
     opts = {
+      enabled = false,
       indent = {
         char = '│',
         tab_char = '│',
