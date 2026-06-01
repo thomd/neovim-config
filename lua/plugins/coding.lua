@@ -7,7 +7,7 @@ return {
       toggler = { line = '<leader>c' },
       opleader = { line = '<leader>c' },
       pre_hook = function()
-        if vim.bo.filetype == 'sh' then
+        if vim.bo.filetype == 'sh' or vim.bo.filetype == 'css' then
           return vim.bo.commentstring
         end
       end,

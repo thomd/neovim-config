@@ -16,6 +16,7 @@ return {
   {
     'nvim-mini/mini.move',
     version = false,
+    main = 'mini.move',
     event = 'BufReadPost',
     opts = {
       mappings = {
