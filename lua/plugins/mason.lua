@@ -42,10 +42,18 @@ return {
 		event = { "BufWritePre" },
 		cmd = { "ConformInfo" },
 		opts = {
-			format_on_save = {
-				timeout_ms = 3000,
-				lsp_format = "fallback",
-			},
+			format_on_save = function(bufnr)
+				local ft = vim.bo[bufnr].filetype
+				if ft == "yaml" then
+					local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+					for _, line in ipairs(lines) do
+						if line:match("{{") then
+							return nil
+						end
+					end
+				end
+				return { timeout_ms = 3000, lsp_format = "fallback" }
+			end,
 			formatters_by_ft = {
 				bash = { "shfmt" },
 				css = { "prettier" },
