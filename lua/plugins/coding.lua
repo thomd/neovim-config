@@ -106,6 +106,126 @@ return {
     end,
   },
 
+  -- Snippet engine
+  {
+    'L3MON4D3/LuaSnip',
+    version = 'v2.*',
+    build = 'make install_jsregexp',
+    event = 'InsertEnter',
+    keys = {
+      {
+        '<C-k>',
+        function()
+          local ls = require('luasnip')
+          if ls.expand_or_jumpable() then ls.expand_or_jump() end
+        end,
+        mode = { 'i', 's' },
+        desc = 'expand snippet / jump forward',
+      },
+      {
+        '<C-j>',
+        function()
+          local ls = require('luasnip')
+          if ls.jumpable(-1) then ls.jump(-1) end
+        end,
+        mode = { 'i', 's' },
+        desc = 'jump backward in snippet',
+      },
+      {
+        '<C-l>',
+        function()
+          local ls = require('luasnip')
+          if ls.choice_active() then ls.change_choice(1) end
+        end,
+        mode = { 'i', 's' },
+        desc = 'next snippet choice',
+      },
+    },
+    config = function()
+      require('luasnip.loaders.from_vscode').lazy_load({
+        paths = { vim.fn.stdpath('config') .. '/snippets' },
+      }) -- own snippets only
+    end,
+  },
+
+  -- Completion popup engine
+  {
+    'saghen/blink.cmp',
+    version = '*', -- use a release tag (ships a prebuilt fuzzy-matcher binary)
+    event = 'InsertEnter',
+    dependencies = { 'L3MON4D3/LuaSnip' },
+    opts = {
+      -- respects the existing <leader>ta toggle (vim.b.completion)
+      enabled = function()
+        return vim.b.completion ~= false
+      end,
+      keymap = {
+        preset = 'default', -- <C-y> accept, <C-n>/<C-p> select, <C-space> open, <C-e> hide
+        ['<C-k>'] = {}, -- free <C-k> for LuaSnip (default preset binds it to signature)
+        -- <Enter>: accept the selected item, otherwise insert a normal newline.
+        -- <Tab> is intentionally left to copilot (see keymaps.lua).
+        ['<CR>'] = { 'accept', 'fallback' },
+      },
+      snippets = { preset = 'luasnip' },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      completion = {
+        -- 'solid' = invisible, background-colored frame -> padding without a border line
+        menu = {
+          border = 'solid',
+          draw = { padding = { 1, 1 } }, -- horizontal padding around each item {left, right}
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+          window = { border = 'solid' },
+        },
+        ghost_text = { enabled = false }, -- copilot.vim already provides ghost text
+      },
+      signature = { enabled = true, window = { border = 'solid' } },
+      appearance = { nerd_font_variant = 'normal' },
+    },
+    opts_extend = { 'sources.default' },
+    config = function(_, opts)
+      require('blink.cmp').setup(opts)
+
+      -- Make the popup background lighter than the current colorscheme's popup bg.
+      local function lighten(dec, amount)
+        local r = math.floor(dec / 65536) % 256
+        local g = math.floor(dec / 256) % 256
+        local b = dec % 256
+        r = math.min(255, math.floor(r + (255 - r) * amount))
+        g = math.min(255, math.floor(g + (255 - g) * amount))
+        b = math.min(255, math.floor(b + (255 - b) * amount))
+        return string.format('#%02x%02x%02x', r, g, b)
+      end
+
+      local function set_blink_colors()
+        local hl = vim.api.nvim_get_hl
+        local base = (hl(0, { name = 'Pmenu' }).bg)
+          or (hl(0, { name = 'NormalFloat' }).bg)
+          or (hl(0, { name = 'Normal' }).bg)
+        if not base then return end
+        local bg = lighten(base, 0.15) -- 15% toward white; bump for more contrast
+        -- include the *Border groups because the windows use the 'solid' border
+        for _, group in ipairs({
+          'BlinkCmpMenu', 'BlinkCmpMenuBorder',
+          'BlinkCmpDoc', 'BlinkCmpDocBorder', 'BlinkCmpDocSeparator',
+          'BlinkCmpSignatureHelp', 'BlinkCmpSignatureHelpBorder',
+        }) do
+          vim.api.nvim_set_hl(0, group, { bg = bg })
+        end
+      end
+
+      set_blink_colors()
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        group = vim.api.nvim_create_augroup('blink_colors', { clear = true }),
+        callback = set_blink_colors,
+      })
+    end,
+  },
+
   -- Highlight word under cursor
   {
     'ya2s/nvim-cursorline',

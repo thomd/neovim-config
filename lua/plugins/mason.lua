@@ -17,6 +17,10 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = { "terraformls" },
 			})
+			-- advertise blink.cmp's completion capabilities to every server
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
+			})
 			vim.lsp.config("terraformls", {
 				init_options = {
 					ignoreSingleFileWarning = true,

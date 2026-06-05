@@ -1,23 +1,15 @@
 local map = vim.keymap.set
 local t = function(s) return vim.api.nvim_replace_termcodes(s, true, true, true) end
 
--- Tab: accept copilot suggestion > navigate popup > buffer completion > literal tab
+-- Tab: accept copilot suggestion, else literal tab.
+-- (blink.cmp owns the completion popup via <C-y>/<C-n>/<C-p>.)
 map('i', '<Tab>', function()
   local suggestion = vim.fn['copilot#GetDisplayedSuggestion']()
   if suggestion and suggestion.text ~= '' then
     return vim.fn['copilot#Accept']('')
-  elseif vim.fn.pumvisible() == 1 then
-    return t('<C-n>')
   end
-  local col = vim.fn.col('.') - 1
-  if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-    return t('<Tab>')
-  end
-  return t('<C-n>')
-end, { expr = true, silent = true, replace_keycodes = false, desc = 'tab complete' })
-map('i', '<S-Tab>', function()
-  return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
-end, { expr = true, desc = 'tab complete prev' })
+  return t('<Tab>')
+end, { expr = true, silent = true, replace_keycodes = false, desc = 'accept copilot or indent' })
 
 -- Better escape
 map('i', 'jk', '<Esc>', { desc = 'escape' })
