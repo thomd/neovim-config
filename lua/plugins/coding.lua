@@ -173,6 +173,9 @@ return {
       completion = {
         -- 'solid' = invisible, background-colored frame -> padding without a border line
         menu = {
+          -- Don't auto-pop the menu: it would hide copilot's ghost text and break
+          -- the <Tab>-accepts-copilot mapping (see keymaps.lua). Open with <C-Space>.
+          auto_show = false,
           border = 'solid',
           draw = { padding = { 1, 1 } }, -- horizontal padding around each item {left, right}
         },
