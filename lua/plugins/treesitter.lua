@@ -8,6 +8,8 @@ return {
       require('nvim-treesitter').setup({
         install_dir = vim.fn.stdpath('data') .. '/site',
       })
+      vim.treesitter.language.register('terraform', 'opentofu')
+      vim.treesitter.language.register('terraform', 'opentofu-vars')
 
       local parsers = {
         'bash',

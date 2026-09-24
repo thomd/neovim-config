@@ -31,3 +31,11 @@ git clone https://github.com/thomd/neovim-config.git ~/.config/nvim
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter): `lua/plugins/treesitter.lua`
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects): `lua/plugins/treesitter.lua`
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context): `lua/plugins/treesitter.lua`
+
+## Terraform and OpenTofu
+
+Terraform files use `terraformls` and `terraform fmt`. In a project containing
+`.tofu.lock.hcl` or `.opentofu-version`, `.tf` and `.tfvars` files are treated
+as OpenTofu files and use `tofu_ls` and `tofu fmt` instead. Both language
+servers are installed through Mason; install the `tofu` and `tflint` CLIs
+separately when needed.

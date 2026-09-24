@@ -73,11 +73,24 @@ o.spellsuggest = 'best,20' -- Limits to 20 suggestions
 -- Diagnostics
 vim.diagnostic.config({ virtual_text = true })
 
+local function is_opentofu_project(path)
+  return #vim.fs.find({ '.tofu.lock.hcl', '.opentofu-version' }, {
+    path = vim.fs.dirname(path),
+    upward = true,
+  }) > 0
+end
+
 -- Filetype overrides
 vim.filetype.add({
   extension = {
-    tf = 'terraform',
-    tfvars = 'terraform',
+    tf = function(path)
+      return is_opentofu_project(path) and 'opentofu' or 'terraform'
+    end,
+    tfvars = function(path)
+      return is_opentofu_project(path) and 'opentofu-vars' or 'terraform'
+    end,
+    tofu = 'opentofu',
+    tofuvars = 'opentofu-vars',
   },
 })
 

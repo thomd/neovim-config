@@ -15,7 +15,7 @@ return {
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "terraformls" },
+				ensure_installed = { "terraformls", "tofu_ls" },
 			})
 			-- advertise blink.cmp's completion capabilities to every server
 			vim.lsp.config("*", {
@@ -27,6 +27,7 @@ return {
 				},
 			})
 			vim.lsp.enable("terraformls")
+			vim.lsp.enable("tofu_ls")
 			vim.lsp.config("tflint", {})
 			vim.lsp.enable("tflint")
 			vim.lsp.config("lua_ls", {
@@ -73,6 +74,8 @@ return {
 				scss = { "prettier" },
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
+				opentofu = { "tofu_fmt" },
+				["opentofu-vars"] = { "tofu_fmt" },
 				typescript = { "prettier" },
 				yaml = { "prettier" },
 			},
@@ -93,6 +96,7 @@ return {
 
 			lint.linters_by_ft = {
 				terraform = { "tflint" },
+				opentofu = { "tflint" },
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
