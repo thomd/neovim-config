@@ -27,6 +27,11 @@ return {
 				},
 			})
 			vim.lsp.enable("terraformls")
+			vim.lsp.config("tofu_ls", {
+				init_options = {
+					ignoreSingleFileWarning = true,
+				},
+			})
 			vim.lsp.enable("tofu_ls")
 			vim.lsp.config("tflint", {})
 			vim.lsp.enable("tflint")
